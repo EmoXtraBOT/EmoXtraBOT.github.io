@@ -72,7 +72,7 @@
 </head>
 <body>
   <h1>EmoXtra Bot Manager</h1>
-  <input type="text" id="botInput" placeholder="Enter bot ID or command...">
+  <input type="text" id="botInput" placeholder="Enter bot ID...">
   <button onclick="checkBot()">Check Bot</button>
   <div id="result"></div>
 
@@ -103,13 +103,6 @@
         result.textContent = 'Connected to EmoXtraBETA1';
         result.className = 'success';
         sound.play();
-      } else if (input === 'true') {
-        result.textContent = 'EmoXtra Bots are online right now!';
-        result.className = 'success';
-        sound.play();
-      } else if (input === 'false') {
-        result.textContent = 'Failed to find this bot!';
-        result.className = 'fail';
       } else {
         result.textContent = 'Failed to find this bot!';
         result.className = 'fail';
