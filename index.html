@@ -92,7 +92,6 @@
 
   <script>
     // هنا يمكن التحكم في فتح المواقع من خلال تعديل الكود الأساسي
-    const siteOpen = false; // إذا true يفتح موقع عادي، إذا false يوجه لموقع آخر
 
     function checkBot() {
       const input = document.getElementById('botInput').value.trim().toLowerCase();
@@ -108,13 +107,6 @@
         result.className = 'fail';
       }
 
-      // فتح الموقع حسب قيمة siteOpen داخل الكود
-      if(siteOpen) {
-        window.open('https://example.com', '_blank'); // فتح موقع عادي
-      } else {
-        window.location.href = '/offline'; // توجيه لموقع آخر
-      }
-    }
 
     function joinTeam() {
       const code = document.getElementById('teamcode').value.trim();
