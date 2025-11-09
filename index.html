@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EmoXtra Bot Manager</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #141414, #1f1f1f);
+      font-family: 'Poppins', sans-serif;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+    h1 {
+      color: #00ffaa;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px #00ffaa;
+    }
+    input[type="text"] {
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #00ffaa;
+      width: 260px;
+      margin: 6px;
+      text-align: center;
+      font-size: 16px;
+      background: #000;
+      color: #fff;
+    }
+    button {
+      background: #00ffaa;
+      color: #000;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 18px;
+      margin: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #00dd88;
+      transform: scale(1.05);
+    }
+    #result {
+      margin-top: 15px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .success {
+      color: #00ff88;
+    }
+    .fail {
+      color: #ff4444;
+    }
+    .buttons {
+      margin-top: 25px;
+    }
+  </style>
+</head>
+<body>
+  <h1>EmoXtra Bot Manager</h1>
+  <input type="text" id="botInput" placeholder="Enter bot ID...">
+  <button onclick="checkBot()">Check Bot</button>
+  <div id="result"></div>
+
+  <div class="buttons">
+    <button>Random Squad Emote</button>
+    <button>Random Single Emote</button>
+    <button>Join your squad</button>
+    <button>Add you to squad</button>
+  </div>
+
+  <div class="team-section">
+    <input type="text" id="teamcode" placeholder="Enter team code">
+    <button onclick="joinTeam()">Join</button>
+  </div>
+
+  <audio id="successSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_9b43a2e06e.mp3?filename=success-1-6297.mp3"></audio>
+
+  <script>
+    function checkBot() {
+      const input = document.getElementById('botInput').value.trim();
+      const result = document.getElementById('result');
+      const sound = document.getElementById('successSound');
+
+      if (input === '13825273579') {
+        result.textContent = 'Connected to EmoXtraBETA1';
+        result.className = 'success';
+        sound.play();
+      } else if (input.toLowerCase() === 'true') {
+        window.open(window.location.href, '_blank');
+      } else if (input.toLowerCase() === 'false') {
+        window.location.href = 'https://example.com'; // غيّر هذا الرابط إلى الموقع الذي تريد التوجيه إليه
+      } else {
+        result.textContent = 'Failed to find this bot!';
+        result.className = 'fail';
+      }
+    }
+
+    function joinTeam() {
+      const code = document.getElementById('teamcode').value.trim();
+      if (code) {
+        alert('Joining team with code: ' + code);
+      } else {
+        alert('Please enter a valid team code.');
+      }
+    }
+  </script>
+</body>
+</html>
