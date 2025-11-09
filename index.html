@@ -55,9 +55,15 @@
     }
     .success {
       color: #00ff88;
+      text-shadow: 0 0 20px #00ffaa, 0 0 40px #00ffaa;
+      animation: glowText 1.5s infinite alternate;
     }
     .fail {
       color: #ff4444;
+    }
+    @keyframes glowText {
+      from {text-shadow: 0 0 10px #00ffaa, 0 0 20px #00ffaa;}
+      to {text-shadow: 0 0 20px #00ff88, 0 0 40px #00ff88, 0 0 60px #00ff88;}
     }
     .buttons {
       margin-top: 25px;
@@ -66,7 +72,7 @@
 </head>
 <body>
   <h1>EmoXtra Bot Manager</h1>
-  <input type="text" id="botInput" placeholder="Enter bot ID...">
+  <input type="text" id="botInput" placeholder="Enter bot ID or command...">
   <button onclick="checkBot()">Check Bot</button>
   <div id="result"></div>
 
@@ -85,8 +91,11 @@
   <audio id="successSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_9b43a2e06e.mp3?filename=success-1-6297.mp3"></audio>
 
   <script>
+    // هنا يمكن التحكم في فتح المواقع من خلال تعديل الكود الأساسي
+    const siteOpen = false; // إذا true يفتح موقع عادي، إذا false يوجه لموقع آخر
+
     function checkBot() {
-      const input = document.getElementById('botInput').value.trim();
+      const input = document.getElementById('botInput').value.trim().toLowerCase();
       const result = document.getElementById('result');
       const sound = document.getElementById('successSound');
 
@@ -94,13 +103,23 @@
         result.textContent = 'Connected to EmoXtraBETA1';
         result.className = 'success';
         sound.play();
-      } else if (input.toLowerCase() === 'true') {
-        window.open(window.location.href, '_blank');
-      } else if (input.toLowerCase() === 'false') {
-        window.location.href = 'https://example.com'; // غيّر هذا الرابط إلى الموقع الذي تريد التوجيه إليه
+      } else if (input === 'true') {
+        result.textContent = 'EmoXtra Bots are online right now!';
+        result.className = 'success';
+        sound.play();
+      } else if (input === 'false') {
+        result.textContent = 'Failed to find this bot!';
+        result.className = 'fail';
       } else {
         result.textContent = 'Failed to find this bot!';
         result.className = 'fail';
+      }
+
+      // فتح الموقع حسب قيمة siteOpen داخل الكود
+      if(siteOpen) {
+        window.open('https://example.com', '_blank'); // فتح موقع عادي
+      } else {
+        window.location.href = '/offline'; // توجيه لموقع آخر
       }
     }
 
