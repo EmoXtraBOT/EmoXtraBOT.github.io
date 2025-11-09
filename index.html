@@ -55,15 +55,9 @@
     }
     .success {
       color: #00ff88;
-      text-shadow: 0 0 20px #00ffaa, 0 0 40px #00ffaa;
-      animation: glowText 1.5s infinite alternate;
     }
     .fail {
       color: #ff4444;
-    }
-    @keyframes glowText {
-      from {text-shadow: 0 0 10px #00ffaa, 0 0 20px #00ffaa;}
-      to {text-shadow: 0 0 20px #00ff88, 0 0 40px #00ff88, 0 0 60px #00ff88;}
     }
     .buttons {
       margin-top: 25px;
@@ -91,10 +85,8 @@
   <audio id="successSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_9b43a2e06e.mp3?filename=success-1-6297.mp3"></audio>
 
   <script>
-    // هنا يمكن التحكم في فتح المواقع من خلال تعديل الكود الأساسي
-
     function checkBot() {
-      const input = document.getElementById('botInput').value.trim().toLowerCase();
+      const input = document.getElementById('botInput').value.trim();
       const result = document.getElementById('result');
       const sound = document.getElementById('successSound');
 
@@ -106,7 +98,7 @@
         result.textContent = 'Failed to find this bot!';
         result.className = 'fail';
       }
-
+    }
 
     function joinTeam() {
       const code = document.getElementById('teamcode').value.trim();
