@@ -62,6 +62,57 @@
     .buttons {
       margin-top: 25px;
     }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #1e1e1e;
+      border: 2px solid #00ffaa;
+      border-radius: 12px;
+      padding: 25px;
+      width: 320px;
+      text-align: center;
+      box-shadow: 0 0 15px #00ffaa55;
+    }
+
+    .modal-content h2 {
+      color: #ffcc00;
+      margin-bottom: 15px;
+    }
+
+    .modal-content input {
+      width: 90%;
+      padding: 8px;
+      margin: 8px 0;
+      border: 1px solid #00ffaa;
+      border-radius: 6px;
+      background: #000;
+      color: #fff;
+      text-align: center;
+    }
+
+    .modal-content a {
+      display: block;
+      margin-top: 10px;
+      color: #00ffaa;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .modal-content a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -75,11 +126,23 @@
     <button>Random Single Emote</button>
     <button>Join your squad</button>
     <button>Add you to squad</button>
+    <button onclick="openModal()">📸 Screenshot</button>
   </div>
 
   <div class="team-section">
     <input type="text" id="teamcode" placeholder="Enter team code">
     <button onclick="joinTeam()">Join</button>
+  </div>
+
+  <div class="modal" id="screenshotModal">
+    <div class="modal-content">
+      <h2>⚠️ Warning</h2>
+      <p>You want to join our Discord server to send screenshot</p>
+      <input type="text" id="discordUser" placeholder="Enter your Discord Username">
+      <button onclick="sendDM()">Send to DM (DMS open)</button>
+      <button onclick="openServer()">Discord Server</button>
+      <a href="https://support.discord.com/articles/360040816151" target="_blank">How to open DM in Discord</a>
+    </div>
   </div>
 
   <audio id="successSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_9b43a2e06e.mp3?filename=success-1-6297.mp3"></audio>
@@ -106,6 +169,31 @@
         alert('Joining team with code: ' + code);
       } else {
         alert('Please enter a valid team code.');
+      }
+    }
+
+    function openModal() {
+      document.getElementById('screenshotModal').style.display = 'flex';
+    }
+
+    function sendDM() {
+      const username = document.getElementById('discordUser').value.trim();
+      if (username) {
+        alert('Screenshot will be sent to ' + username + ' via DM (if DMs are open).');
+        document.getElementById('screenshotModal').style.display = 'none';
+      } else {
+        alert('Please enter your Discord username first.');
+      }
+    }
+
+    function openServer() {
+      window.open('https://discord.gg/95R3vrN5hb', '_blank');
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('screenshotModal');
+      if (event.target === modal) {
+        modal.style.display = 'none';
       }
     }
   </script>
