@@ -125,8 +125,8 @@
     <button>Random Squad Emote</button>
     <button>Random Single Emote</button>
     <button>Join your squad</button>
-    <button>Add you to squad</button>    
-    <button>Outfut Changer (Beta)</button>
+    <button>Add you to squad</button>
+    <button>Outfit Changer (Beta)</button>
     <button onclick="openModal()">📸 Screenshot</button>
   </div>
 
@@ -158,13 +158,11 @@
         result.textContent = 'Connected to EmoXtraBETA1';
         result.className = 'success';
         sound.play();
-      } else {      
-        if (input === '13877268364') {
+      } else if (input === '13877268364') {
         result.textContent = 'Connected to EmoXtraUSA01';
         result.className = 'success';
         sound.play();
       } else {
-        
         result.textContent = 'Failed to find this bot!';
         result.className = 'fail';
       }
